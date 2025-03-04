@@ -1,3 +1,5 @@
+let isTimerRunning = false; // Flag to prevent multiple selections
+
 const questions = [
   "What is the capital of France?",
   "Who wrote 'To Kill a Mockingbird'?",
@@ -98,12 +100,17 @@ for (let i = 0; i < 50; i++) {
 }
 
 function displayQuestion(index, card) {
+  if (isTimerRunning) return; // Prevent selecting another question
+  
   clearInterval(countdown);
+  isTimerRunning = true; // Block new selections
+
   questionBox.textContent = questions[index];
   card.classList.add("selected");
   answerBox.style.display = "none"; // Hide previous answer
   startTimer(index);
 }
+
 
 function startTimer(index) {
   let timeLeft = 30; // Set timer to 30 seconds
@@ -144,5 +151,7 @@ function showAnswer(index) {
   setTimeout(() => {
       answerBox.textContent = `Answer: ${answers[index]}`;
       answerBox.style.display = "block";
+      isTimerRunning = false; // Allow selecting a new question
   }, 500);
 }
+
