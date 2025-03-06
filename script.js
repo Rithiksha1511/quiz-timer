@@ -86,6 +86,25 @@ answerBox.style.borderRadius = "10px";
 answerBox.style.boxShadow = "3px 3px 10px rgba(0, 0, 0, 0.3)";
 document.body.appendChild(answerBox);
 
+// Create View Answer Button
+const viewAnswerButton = document.createElement("div");
+viewAnswerButton.id = "view-answer-button";
+viewAnswerButton.textContent = "View Answer";
+viewAnswerButton.style.display = "none";
+viewAnswerButton.style.marginTop = "20px";
+viewAnswerButton.style.padding = "15px";
+viewAnswerButton.style.fontSize = "20px";
+viewAnswerButton.style.fontWeight = "bold";
+viewAnswerButton.style.background = "#dc3545"; // Red color to distinguish
+viewAnswerButton.style.color = "#fff";
+viewAnswerButton.style.borderRadius = "10px";
+viewAnswerButton.style.boxShadow = "3px 3px 10px rgba(0, 0, 0, 0.3)";
+viewAnswerButton.style.cursor = "pointer";
+viewAnswerButton.addEventListener("click", () => showAnswer(viewAnswerButton.dataset.index));
+document.body.appendChild(viewAnswerButton);
+
+
+
 for (let i = 0; i < 50; i++) {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -100,58 +119,41 @@ for (let i = 0; i < 50; i++) {
 }
 
 function displayQuestion(index, card) {
-  if (isTimerRunning) return; // Prevent selecting another question
+  if (isTimerRunning) return; 
   
   clearInterval(countdown);
-  isTimerRunning = true; // Block new selections
+  isTimerRunning = true;
 
   questionBox.textContent = questions[index];
   card.classList.add("selected");
-  answerBox.style.display = "none"; // Hide previous answer
+  answerBox.style.display = "none";
+  viewAnswerButton.style.display = "block";
+  viewAnswerButton.dataset.index = index;
   startTimer(index);
 }
 
-
 function startTimer(index) {
-  let timeLeft = 30; // Set timer to 30 seconds
+  let timeLeft = 30;
   timerDisplay.textContent = `Time Left: ${timeLeft}s`;
   timerBar.style.width = "100%";
-  let beepPlayed = false; // Prevent multiple beeps
-  let blinkingStarted = false; // Prevent multiple blinking starts
 
   countdown = setInterval(() => {
       timeLeft--;
       timerDisplay.textContent = `Time Left: ${timeLeft}s`;
       timerBar.style.width = `${(timeLeft / 30) * 100}%`;
 
-      // Play beep sound and start blinking when 3 seconds are left
-      if (timeLeft === 3 && !beepPlayed) {
-          beepPlayed = true;
-          let beep = new Audio('beep.mp3'); // Ensure this file is in the same directory
-          beep.play();
-      }
-
-      if (timeLeft === 3 && !blinkingStarted) {
-          blinkingStarted = true;
-          questionBox.style.animation = "timeUp 0.5s ease-in-out infinite"; // Start blinking
-      }
-
       if (timeLeft === 0) {
           clearInterval(countdown);
           timerDisplay.textContent = "⏰ Time's Up!";
           timerBar.style.width = "0%";
-          questionBox.style.animation = "none"; // Stop blinking
           showAnswer(index);
       }
   }, 1000);
 }
 
-// Show Answer After Timer Ends
 function showAnswer(index) {
-  setTimeout(() => {
-      answerBox.textContent = `Answer: ${answers[index]}`;
-      answerBox.style.display = "block";
-      isTimerRunning = false; // Allow selecting a new question
-  }, 500);
+  answerBox.textContent = `Answer: ${answers[index]}`;
+  answerBox.style.display = "block";
+  viewAnswerButton.style.display = "none";
+  isTimerRunning = false;
 }
-
