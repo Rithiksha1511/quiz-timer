@@ -1,70 +1,62 @@
 let isTimerRunning = false; // Flag to prevent multiple selections
 
 const questions = [
-  "What is the capital of France?",
-  "Who wrote 'To Kill a Mockingbird'?",
-  "What is the square root of 144?",
-  "Which planet is known as the Red Planet?",
-  "Who discovered penicillin?",
-  "What is the boiling point of water?",
-  "Who painted the Mona Lisa?",
-  "What is the largest ocean on Earth?",
-  "What is the hardest natural substance?",
-  "Which element has the chemical symbol O?",
-  "What is the speed of light?",
-  "Who developed the theory of relativity?",
-  "What is the longest river in the world?",
-  "Which gas do plants use for photosynthesis?",
-  "What is the smallest country in the world?",
-  "Who invented the telephone?",
-  "What is the capital of Japan?",
-  "Which bird is known for its ability to mimic sounds?",
-  "What is the chemical formula for water?",
-  "Which continent is the largest by area?",
-  "What is the tallest mountain in the world?",
-  "What is the freezing point of water?",
-  "Who is the author of '1984'?",
-  "Which planet has the most moons?",
-  "What is the national flower of India?",
-  "What is the main ingredient in chocolate?",
-  "What is the currency of the UK?",
-  "What does DNA stand for?",
-  "What is the largest mammal on Earth?",
-  "Which gas makes up most of Earth's atmosphere?",
-  "Who was the first person to step on the moon?",
-  "What is the chemical symbol for gold?",
-  "Which country is famous for the Great Wall?",
-  "What is the capital of Canada?",
-  "Which animal is known as the King of the Jungle?",
-  "What is the main ingredient in bread?",
-  "Who painted 'Starry Night'?",
-  "Which language has the most native speakers?",
-  "What is the longest bone in the human body?",
-  "Which organ pumps blood in the human body?",
-  "What is the hottest planet in the solar system?",
-  "Which animal is known for changing its color?",
-  "What is the capital of Australia?",
-  "Which planet is closest to the Sun?",
-  "Who was the first President of the USA?",
-  "What is the national sport of Canada?",
-  "Which instrument has 88 keys?",
-  "Which metal is used in electrical wiring?",
-  "What is the study of living organisms called?",
-  "Which country produces the most coffee?"
+  "Which planet is known as the 'Red Planet'?",
+  "What is the name of our galaxy?",
+  "Which planet is known for its beautiful blue color and strong winds?",
+  "What is the maximum number of overs in a One Day International (ODI) match per team?",
+  "Which Tamil music composer is known for his background scores in movies like 'Vikram Vedha' and 'Kaithi'?",
+  "Which is the smallest state in India by area?",
+  "What is 15% of 200?",
+  "What is the hardest natural substance on Earth?",
+  "What is the name of India's first satellite?",
+  "Which city is known as the 'Pink City' of India?",
+  "What has hands but can’t clap?",
+  "What runs but never walks?",
+  "Which continent has the most countries?",
+  "Which blood group is the universal donor?",
+  "What has to be broken before you can use it?",
+  "What can fill a room but takes up no space?",
+  "Who led India to its first-ever World Cup win in 1983?",
+  "Which cricketer is known for his aggressive batting and nickname 'Universal Boss'?",
+  "What was the first Tamil film song to be released as a single before the movie’s release, starting the trend in Kollywood?",
+  "Which country is considered the birthplace of cricket?",
+  "Who wrote 'Romeo and Juliet'?",
+  "Who was the first woman to win a Nobel Prize?",
+  "What is the largest bird in the world?",
+  "Who is known as the 'Father of Computers'?",
+  "Which planet has the largest moon in our solar system?",
+  "Who is the youngest music composer joining the film industry at the age of 16?",
+  "What movie is 'Naana Thaana' song from?",
+  "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+  "I can be cracked, made, told, and played. What am I?",
+  "The more you have of me, the less you see. What am I?",
+  "I fly without wings. I cry without eyes. Wherever I go, darkness follows me. What am I?",
+  "I am not alive, but I grow. I don’t have lungs, but I need air. I don’t have a mouth, and yet I drown. What am I?",
+  "I have keys but open no locks. I have space but no room. You can enter, but you can’t go outside. What am I?",
+  "State 15 vegetables.",
+  "Say any 20 movies of Rajinikanth.",
+  "Name 10 coding languages.",
+  "Say any words in alphabetical order within 30 seconds.",
+  "Say 15 car companies within 30 seconds.",
+  "Name 10 movie directors within 10 seconds.",
+  "Say 15 colors within 15 seconds.",
+  "State 15 languages.",
+  "Name any 10 things you see around this class within 10–15 seconds.",
+  "Name 10 mobile manufacturing companies.",
+  "Name 10 digital games (mobile or desktop games).",
+  "List 10 apps you use daily.",
+  "Name any 5 states in the USA.",
+  "State 5 capital cities of any country.",
+  "Say the names of 10 YouTubers worldwide.",
+  "State any 7 trees.",
+  "Say any 10 ECE subjects"
 ];
 
 const answers = [
-  "Paris", "Harper Lee", "12", "Mars", "Alexander Fleming", "100°C",
-  "Leonardo da Vinci", "Pacific Ocean", "Diamond", "Oxygen",
-  "299,792,458 m/s", "Albert Einstein", "Nile River", "Carbon Dioxide",
-  "Vatican City", "Alexander Graham Bell", "Tokyo", "Lyrebird", "H2O",
-  "Asia", "Mount Everest", "0°C", "George Orwell", "Jupiter", "Lotus",
-  "Cocoa", "Pound Sterling", "Deoxyribonucleic Acid", "Blue Whale",
-  "Nitrogen", "Neil Armstrong", "Au", "China", "Ottawa", "Lion",
-  "Flour", "Vincent van Gogh", "Mandarin Chinese", "Femur", "Heart",
-  "Venus", "Chameleon", "Canberra", "Mercury", "George Washington",
-  "Lacrosse", "Piano", "Copper", "Biology", "Brazil"
+  "Mars", "Milky Way", "Neptune", "50 overs", "Sam CS", "Goa", "30", "Diamond", "Aryabhata", "Jaipur", "Clock", "Water/River", "Africa", "O negative (O-)", "Egg", "Light", "Kapil Dev", "Chris Gayle", "Why This Kolaveri Di?", "England", "William Shakespeare", "Marie Curie", "Ostrich", "Charles Babbage", "Jupiter", "Yuvan Shankar Raja", "TSK", "An echo", "A joke", "Darkness", "A cloud", "A fire", "A keyboard", "Anything", "Anything","Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything", "Anything"
 ];
+
 
 const container = document.getElementById("card-container");
 const questionBox = document.getElementById("question-box");
@@ -103,9 +95,7 @@ viewAnswerButton.style.cursor = "pointer";
 viewAnswerButton.addEventListener("click", () => showAnswer(viewAnswerButton.dataset.index));
 document.body.appendChild(viewAnswerButton);
 
-
-
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < questions.length; i++) {
   const card = document.createElement("div");
   card.classList.add("card");
   card.textContent = i + 1;
